@@ -20,12 +20,13 @@ with open("input.txt") as file:
                 currentDir = directories[currentDir]["parent"]
         elif part2 != "ls":  # program is outputting contents of directory
             if part1 == "dir":
-                directories[currentDir]["children"].append(part2)
-                directories[part2] = {}
-                directories[part2]["parent"] = currentDir
-                directories[part2]["files"] = []
-                directories[part2]["children"] = []
-                directories[part2]["size"] = 0
+                if (part2 in directories and directories[part2]["parent"] == directories[currentDir]["parent"]):
+                    directories[currentDir]["children"].append(part2)
+                    directories[part2] = {}
+                    directories[part2]["parent"] = currentDir
+                    directories[part2]["files"] = []
+                    directories[part2]["children"] = []
+                    directories[part2]["size"] = 0
             else:
                 if part2 not in directories[currentDir]["files"]:
                     directories[currentDir]["files"].append(part2)
@@ -42,12 +43,12 @@ with open("input.txt") as file:
                             count += 1
 
                         tempDir = directories[tempDir]["parent"]
-                        print(tempDir)
+                        #print(tempDir)
                         #print(directories[tempDir]["parent"])
                         
 
         i += 1
-        if i == 50:
+        if i == 50000:
             break
 
 print(directories)
