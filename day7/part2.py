@@ -15,23 +15,16 @@ class Directory:
 
 current_dir = []
 directories = []
-# abc->def
-# ghd -> def
 with open('puzzle.txt') as file:
 	new = None
 	for line in file:
-		#print(line)
 		if "$ cd" in line:
 			line = line.strip()
 			line = line.split(" ")
-			#print("went here")
 			if line[2] == "..":
 				current_dir.pop()
 			else:
 				current_dir = current_dir + [line[2]]
-				#print("line 2",line[2])
-				#print("new",current_dir)
-				#print(line[2])
 		elif "$ ls" in line:
 			line = line.strip()
 			line = line.split(" ")
@@ -41,27 +34,19 @@ with open('puzzle.txt') as file:
 		elif "dir" in line:
 			line = line.strip()
 			line = line.split(" ")
-			# print("here is here",current_dir +[line[1]])
 			new.addDirectories(current_dir.copy() +[line[1]])
 		else:
 			line = line.strip()
 			line = line.split(" ")
 			new.addFiles(int(line[0]))
-#print("origional length",len(directories))
-#print("\n\n\n\n\n\n")
 
-
-# for i in directories:
-# 	print(i,i.filesize)
 valuesOfDirectories = {}
 
-# print(''.join(["hello"," world"]))
-# print( "this", directories[1].directories)
-# print(len(directories))
 for i in directories:
 	if len(i.directories) == 0:
 		directories.remove(i)
 		valuesOfDirectories[str(i)] = i.filesize 
+
 while len(directories) > 0:
 	for i in directories:
 		length = len(directories)
@@ -82,3 +67,23 @@ maxTotal = 0
 for i in valuesOfDirectories:
 	if valuesOfDirectories[i] <= 100000:
 		maxTotal += valuesOfDirectories[i]
+
+min = 70000000
+lowest = ""
+
+for i in valuesOfDirectories:
+    if valuesOfDirectories[i] >= 30000000 and valuesOfDirectories[i] < min:
+        min = valuesOfDirectories[str(i)]
+        lowest = i
+print(min)
+print(i)
+
+# sams part two attempt
+freespace = 70000000 - valuesOfDirectories["/"]
+spaceNeeded = 30000000 - freespace
+lowest = 10000000000
+for i in valuesOfDirectories:
+	if valuesOfDirectories[i] >= spaceNeeded and valuesOfDirectories[i]<=lowest:
+		lowest = valuesOfDirectories[i]
+
+print(lowest)
