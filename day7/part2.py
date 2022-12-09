@@ -63,27 +63,12 @@ while len(directories) > 0:
 	if len(directories) == length:
 		break
 
-maxTotal = 0
-for i in valuesOfDirectories:
-	if valuesOfDirectories[i] <= 100000:
-		maxTotal += valuesOfDirectories[i]
-
-min = 70000000
-lowest = ""
-
-for i in valuesOfDirectories:
-    if valuesOfDirectories[i] >= 30000000 and valuesOfDirectories[i] < min:
-        min = valuesOfDirectories[str(i)]
-        lowest = i
-print(min)
-print(i)
-
 # sams part two attempt
 freespace = 70000000 - valuesOfDirectories["/"]
 spaceNeeded = 30000000 - freespace
-lowest = 10000000000
-for i in valuesOfDirectories:
-	if valuesOfDirectories[i] >= spaceNeeded and valuesOfDirectories[i]<=lowest:
-		lowest = valuesOfDirectories[i]
+lowest = 70000000
+for i in valuesOfDirectories.values():
+	if i >= spaceNeeded and i<=lowest:
+		lowest = i
 
 print(lowest)
