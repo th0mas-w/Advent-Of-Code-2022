@@ -15,7 +15,7 @@ class Directory:
 
 current_dir = []
 directories = []
-with open('puzzle.txt') as file:
+with open("puzzle.txt","r",encoding="utf-8") as file:
 	new = None
 	for line in file:
 		if "$ cd" in line:
