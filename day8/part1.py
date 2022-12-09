@@ -16,4 +16,8 @@ for i,row in enumerate(forest):
     for j,tree in enumerate(row):
         if visable[i][j] == 1:
             continue
+        if j == 0 or i == 0 or j == len(forest[0]) - 1 or i == len(forest) - 1:
+            visable[i][j] = 1
+            continue
+        
 
