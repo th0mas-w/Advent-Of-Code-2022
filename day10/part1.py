@@ -5,18 +5,23 @@ strengths = []
 
 commands = [line.strip() for line in open("input.txt","r").readlines()]
 
-for i in range(len(commands)):
+for command in commands:
 
     cycle += 1
-    if commands[i] == "noop":
+    if command == "noop":
         continue
 
     if cycle in [20,60,100,140,180,220]:
+        print(cycle)
         strengths.append(x * cycle)
 
     cycle += 1
 
-    x += int(commands[i].split()[1])
+    x += int(command.split()[1])
+
+    if cycle in [20,60,100,140,180,220]:
+        print(cycle)
+        strengths.append(x * cycle)
 
 
 print("x:",x)
